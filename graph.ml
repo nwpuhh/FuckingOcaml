@@ -68,16 +68,18 @@ let map_hashtbl h f =
   Hashtbl.iter (fun key v -> Hashtbl.add result key (f v)) h ;
   result
 
-(*There are some problems in the let in {new_label; info.id....}*)
+(*There are some problems in the let in {new_label; info.id....}--11.11*)
+(*Now there are no problem, all right*)
 let map graph vmap emap =
+	(*define the fun of changing vertice into another type*)
 	let fun_info info = 
-		let new_label = vmap info.label 
-		and new_outedges = List.map (fun (e,_) -> (emap e,_) ) info.outedges
-		and new_inedges = List.map (fun (e,_) -> (emap e,_)) info.inedges
-		in
-			{new_label; info.id; new_outedges; new_inedges}	
+		let new_label = vmap info.label in
+		let new_outedges = List.map (fun (e,id) -> (emap e,id) ) info.outedges in
+		let new_inedges = List.map (fun (e,id) -> (emap e,id)) info.inedges
+		in  
+		{label = new_label; id = info.id; outedges = new_outedges; inedges = new_inedges}	
 	in
-	map_hashtbl graph.vertices fun_info
+	{vertices = map_hashtbl graph.vertices fun_info}
 	
   
 
