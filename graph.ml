@@ -68,6 +68,16 @@ let map_hashtbl h f =
   Hashtbl.iter (fun key v -> Hashtbl.add result key (f v)) h ;
   result
 
-let map graph vmap emap = assert false
+(*There are some problems in the let in {new_label; info.id....}*)
+let map graph vmap emap =
+	let fun_info info = 
+		let new_label = vmap info.label 
+		and new_outedges = List.map (fun (e,_) -> (emap e,_) ) info.outedges
+		and new_inedges = List.map (fun (e,_) -> (emap e,_)) info.inedges
+		in
+			{new_label; info.id; new_outedges; new_inedges}	
+	in
+	map_hashtbl graph.vertices fun_info
+	
   
 
