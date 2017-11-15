@@ -68,6 +68,8 @@ let map_hashtbl h f =
   Hashtbl.iter (fun key v -> Hashtbl.add result key (f v)) h ;
   result
 
-let map graph vmap emap = assert false
-  
-
+let map graph vmap emap =
+  let ret = new_graph () in
+  v_iter graph (fun vi -> add_vertex ret (vmap vi.label) vi.id) ;
+  v_iter graph (fun vi -> List.iter (fun (label, id2) -> add_edge ret vi.id id2 (emap label)) vi.outedges) ;
+  ret
