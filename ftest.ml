@@ -1,4 +1,5 @@
 open Graph
+open Dfs
 
 let () =
 
@@ -15,6 +16,8 @@ let () =
 
   let graph = Gfile.from_file infile in
   let graph2 = Graph.map graph (fun x -> x) int_of_string in
+  let testDfs v = Printf.printf "DFS: %s\n" v.label in
+  Dfs.dfs graph2 (find_vertex graph "source") testDfs;
 
   (* Rewrite the graph that has been read. *)
   let () = Gfile.export outfile graph in
