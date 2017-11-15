@@ -1,5 +1,0 @@
-Solver failed:
-  Ocamlbuild knows of no rules that apply to a target named ftest. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.
-Backtrace:
-  - Failed to build the target ftest
-      - Building ftest
