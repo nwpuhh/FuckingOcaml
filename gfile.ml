@@ -65,5 +65,16 @@ let from_file path =
   close_in infile ;
   graph
   
-                     
 
+let export path graph =
+  let outfile = open_out path in
+  let out fmt = Printf.fprintf outfile fmt in
+
+  out "digraph finite_state_machine {\n	rankdir=LR;\n	size=\"8,5\"\n	node [shape = circle];\n" ;
+
+  v_iter graph (fun vi -> List.iter (fun (label, id2) -> out "	%s -> %s [ label = \"%s\" ];\n" vi.id id2 label) vi.outedges) ;
+
+  out "}\n" ;
+
+  close_out outfile ;
+  ()
