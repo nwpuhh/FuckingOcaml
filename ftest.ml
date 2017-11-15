@@ -14,9 +14,10 @@ let () =
   and outfile = Sys.argv.(4) in
 
   let graph = Gfile.from_file infile in
+  let graph2 = Graph.map graph (fun x -> x) int_of_string in
 
   (* Rewrite the graph that has been read. *)
-  let () = Gfile.write_file outfile graph in
+  let () = Gfile.export outfile graph in
   ()
 
 
