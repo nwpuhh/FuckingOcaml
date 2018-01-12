@@ -6,3 +6,5 @@ open Graph
  * from source to sink.
  *)
 val max_flow: ('v, int) graph -> id -> id -> int
+
+val max_flow_dfs: ('v, int) graph -> id -> id -> int
