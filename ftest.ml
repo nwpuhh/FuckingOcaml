@@ -17,7 +17,9 @@ let () =
   let graph = Gfile.from_file infile in
   let graph2 = Graph.map graph (fun x -> x) int_of_string in
   let max_flow = Fordfulkerson.max_flow graph2 _source _sink in
+  let max_flow_dfs = Fordfulkerson.max_flow_dfs graph2 _source _sink in
   Printf.printf "Max flow from %s to %s: %d\n" _source _sink max_flow;
+  (*Printf.printf "Max flow from %s to %s: %d\n in dfs" _source _sink max_flow_dfs;*)
 
   (* Rewrite the graph that has been read. *)
   let () = Gfile.export outfile graph in

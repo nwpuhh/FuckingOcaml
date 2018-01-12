@@ -49,7 +49,7 @@ val add_edge: ('v, 'e) graph -> id -> id -> 'e -> unit
 (**************  COMBINATORS, ITERATORS  **************)
 
 (* Iterate on all vertices. *)
-val v_iter: ('v, 'e) graph -> (('v,'e) vertex_info -> unit) -> unit
+val v_iter: ('v, 'e) graph -> (('v, 'e) vertex_info -> unit) -> unit
 
 (* map graph vmap emap: maps all vertex labels by vmap and all edges label by emap
  * Returns a new graph. Vertices keep the same identifiers.
